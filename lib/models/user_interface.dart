@@ -1,11 +1,31 @@
+
 import 'package:flutter/material.dart';
 
 class UserInterface with ChangeNotifier {
-  static List<String> listColorAppBar = <String>['Grey', 'Purple', 'Red', 'Green', 'Blue', 'LightGreenAccent'];
+  static List<String> listColorAppBar = <String>['Grey', 'Purple', 'Red', 'Green', 'Blue'];
+  static List<String> listColorBackgroundHomepage = <String>['White', 'Purple', 'Red', 'Green', 'Blue'];
 
-  double _fontSize = 20;
-  String _appBarColor = 'LightGreenAccent';
+  double _fontSize = 15;
+  String _appBarColor = 'Grey';
+  String _homePageBackgroundColor = 'White';
 
+  set homePageBackgroundColor(newColor) {
+    _homePageBackgroundColor = newColor;
+    notifyListeners();
+  }
+
+  Color get homePageBackgroundColor {
+    switch(_homePageBackgroundColor) {
+      case 'White': return Colors.white;
+      case 'Purple': return Colors.purple;
+      case 'Red': return Colors.red;
+      case 'Green': return Colors.green;
+      case 'Blue': return Colors.blue;
+      default: return Colors.black;
+    }
+  }
+
+  String get strHomePageBackgroundColor => _homePageBackgroundColor;
 
   set appBarColor(newColor) {
     _appBarColor = newColor;
@@ -19,8 +39,7 @@ class UserInterface with ChangeNotifier {
       case 'Red': return Colors.red;
       case 'Green': return Colors.green;
       case 'Blue': return Colors.blue;
-    //case 'White': return Colors.white;
-      default: return Colors.lightGreenAccent;
+      default: return Colors.white;
     }
   }
 

@@ -13,6 +13,7 @@ class MyHomePage extends StatelessWidget{
     return Consumer<UserInterface>(
       builder: (context, ui, child) {
         return Scaffold(
+          backgroundColor: ui.homePageBackgroundColor,
 
           appBar: AppBar(
             title: Text("Thông tin hệ thống"),

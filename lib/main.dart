@@ -6,11 +6,10 @@ import 'package:manager_library/widgets/settings.dart';
 import 'package:manager_library/widgets/roomManager.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +19,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => UserInterface()),
       ],
       child: MaterialApp(
-        initialRoute: "/caidat",
+        initialRoute: "/trangchu",
         routes: {
           "/trangchu": (context) => MyHomePage(),
           "/caidat": (context) => MySetting(),
