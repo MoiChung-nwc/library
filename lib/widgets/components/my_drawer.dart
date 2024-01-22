@@ -16,14 +16,14 @@ class MyDrawer extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () => Navigator.of(context).popAndPushNamed('/'),
+            onTap: () => Navigator.of(context).popAndPushNamed('/sach'),
             child: ListTile(
               title: Text('Kho sách'),
               leading: Icon(Icons.menu_book, color: Colors.blue),
             ),
           ),
           InkWell(
-            onTap: () => Navigator.of(context).popAndPushNamed('/'),
+            onTap: () => Navigator.of(context).popAndPushNamed('/about'),
             child: ListTile(
               title: Text('Khách hàng'),
               leading: Icon(Icons.co_present, color: Colors.blue),
@@ -50,9 +50,7 @@ class MyDrawer extends StatelessWidget {
               leading: Icon(Icons.price_check_outlined, color: Colors.blue),
             ),
           ),
-
           Divider(),
-
           InkWell(
             onTap: () => Navigator.of(context).popAndPushNamed('/caidat'),
             child: ListTile(

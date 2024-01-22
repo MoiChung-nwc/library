@@ -7,60 +7,61 @@ import 'package:manager_library/widgets/roomManager.dart';
 import 'package:manager_library/widgets/BookDetails.dart';
 
 class ShowListBook extends StatelessWidget {
-
   final List<RoomBook> listRoomBook;
   final List<RoomTypeBook> listRoomTypeBook;
 
-  ShowListBook(
-      this.listRoomBook,
-      this.listRoomTypeBook
-      );
-
+  ShowListBook(this.listRoomBook, this.listRoomTypeBook);
 
   @override
   Widget build(BuildContext context) {
-    RoomManager roomMangerBook = Provider.of<RoomManager>(context, listen: true);
+    RoomManager roomMangerBook =
+    Provider.of<RoomManager>(context, listen: true);
     return Scaffold(
-      body: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 4,
+      body: Stack(
+        children: [
+          ListView.builder(
+            itemCount: listRoomBook.length,
+            itemBuilder: (BuildContext context, int index) {
+              RoomBook b = listRoomBook[index];
+              return buildRoomCard(context, b);
+            },
           ),
-          itemCount: listRoomBook.length,
-          itemBuilder: (BuildContext context, int index) {
-            RoomBook b = listRoomBook[index];
-            return buildRoomCard(context, b);
-          },
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showMenu(
-            context: context,
-            position: RelativeRect.fromLTRB(300, 745, 0, 0),
-            items: [
-              PopupMenuItem(
-                child: Material(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      FormAddBook add = FormAddBook(
-                        roomMangerBook.addBook,
-                        roomMangerBook.listRoomTypeBook,
-                      );
-                      add.openShowdialog(context);
-                    },
-                    child: Row(
-                      children: [
-                        Icon(Icons.add),
-                        SizedBox(width: 10.0),
-                        Text('Add New Book'),
-                      ],
+          Positioned(
+            bottom: 16.0,
+            right: 16.0,
+            child: FloatingActionButton(
+              onPressed: () {
+                showMenu(
+                  context: context,
+                  position: RelativeRect.fromLTRB(300, 745, 0, 0),
+                  items: [
+                    PopupMenuItem(
+                      child: Material(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            FormAddBook add = FormAddBook(
+                              roomMangerBook.addBook,
+                              roomMangerBook.listRoomTypeBook,
+                            );
+                            add.openShowdialog(context);
+                          },
+                          child: Row(
+                            children: [
+                              Icon(Icons.add),
+                              SizedBox(width: 10.0),
+                              Text('Thêm sách'),
+                            ],
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
-              ),
-            ],
-          );
-        },
-        child: Icon(Icons.add),
+                  ],
+                );
+              },
+              child: Icon(Icons.add),
+            ),
+          ),
+        ],
       ),
     );
   }
@@ -77,29 +78,42 @@ class ShowListBook extends StatelessWidget {
         );
       },
       child: Padding(
-        padding: const EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(10.0),
         child: Card(
-          color: cardColor,
           child: Padding(
-              padding: const EdgeInsets.all(0.0),
-              child: Column(
-                children: [
-                  Icon(Icons.hotel, size: 32, color: Colors.blue,),
-                  Text(
-                    '${b.nameBook}',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.blue,
-                    ),
-                  ),
-                ],
-              ),
+            padding: const EdgeInsets.all(10.0),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.book,
+                  size: 30,
+                ),
+                Expanded(
+                    child: Column(
+                      children: [
+                        Text(
+                          '${b.nameBook}',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        Text(
+                          '${b.idBook}',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                      ],
+                    ))
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 }
-
-

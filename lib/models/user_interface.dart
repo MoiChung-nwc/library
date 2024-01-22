@@ -6,7 +6,7 @@ class UserInterface with ChangeNotifier {
   static List<String> listColorBackgroundHomepage = <String>['White', 'Purple', 'Red', 'Green', 'Blue'];
 
   double _fontSize = 15;
-  String _appBarColor = 'Grey';
+  String _appBarColor = 'Blue';
   String _homePageBackgroundColor = 'White';
 
   set homePageBackgroundColor(newColor) {

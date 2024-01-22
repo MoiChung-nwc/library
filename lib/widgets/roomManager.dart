@@ -7,11 +7,10 @@ import 'package:manager_library/models/RoomBook.dart';
 import 'package:manager_library/models/RoomTypeBook.dart';
 
 class RoomManager extends ChangeNotifier {
-
   final List<RoomTypeBook> _listRoomTypeBook = [
-    RoomTypeBook(name: "asd"),
-    RoomTypeBook(name: "name"),
-    RoomTypeBook(name: "commic"),
+    RoomTypeBook(name: " Triết học"),
+    RoomTypeBook(name: " Khoa học công nghệ"),
+    RoomTypeBook(name: " Truyện tranh"),
   ];
 
   List<RoomTypeBook> get listRoomTypeBook => _listRoomTypeBook;
@@ -47,8 +46,16 @@ class RoomManager extends ChangeNotifier {
 
   RoomManager() {
     listRoomBook = [
-      RoomBook(nameBook: 'Đắc Nhân Tâm', idBook: 123, status: true, type: listRoomTypeBook[2]),
-      RoomBook(nameBook: 'abc', idBook: 567, status: false, type: listRoomTypeBook[1]),
+      RoomBook(
+          nameBook: 'Đắc Nhân Tâm',
+          idBook: 123,
+          status: true,
+          type: listRoomTypeBook[2]),
+      RoomBook(
+          nameBook: 'Tutorial dart',
+          idBook: 567,
+          status: false,
+          type: listRoomTypeBook[1]),
     ];
   }
 
@@ -80,7 +87,7 @@ class RoomManager extends ChangeNotifier {
 
   editBook(RoomBook oldBook, RoomBook newBook) {
     int index = listRoomBook.indexOf(oldBook);
-    if(index != -1) {
+    if (index != -1) {
       listRoomBook[index] = newBook;
       notifyListeners();
     }
@@ -95,7 +102,6 @@ class RoomManager extends ChangeNotifier {
 class RoomManagerBook extends StatelessWidget {
   const RoomManagerBook({super.key});
 
-
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -106,14 +112,12 @@ class RoomManagerBook extends StatelessWidget {
 }
 
 class RoomManagerWidget extends StatefulWidget {
-
   @override
   State<RoomManagerWidget> createState() => _RoomManagerWidgetState();
 }
 
 class _RoomManagerWidgetState extends State<RoomManagerWidget> {
-
-  List<String> listShow = ["List Book", "List Book Type"];
+  List<String> listShow = ["Danh sách sách", "Danh sách tài liệu"];
   String? listSelect;
   Widget? selectedWidget;
 
@@ -123,16 +127,16 @@ class _RoomManagerWidgetState extends State<RoomManagerWidget> {
     return Consumer<RoomManager>(
       builder: (context, roomMangerBook, child) {
         return Scaffold(
-            appBar: AppBar(
-              title: const Text('Book Manager'),
-              backgroundColor: userInterface.appBarColor,
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () {
-                  Navigator.of(context).popAndPushNamed('/trangchu');
-                },
-              ),
+          appBar: AppBar(
+            title: const Text('Quản lí sách'),
+            backgroundColor: userInterface.appBarColor,
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.of(context).popAndPushNamed('/trangchu');
+              },
             ),
+          ),
           body: Stack(
             children: [
               Container(
@@ -155,11 +159,13 @@ class _RoomManagerWidgetState extends State<RoomManagerWidget> {
                             onChanged: (String? newValue) {
                               setState(() {
                                 listSelect = newValue;
-                                if(newValue == listShow[0]) {
-                                  selectedWidget = ShowListBook(roomMangerBook.listRoomBook, roomMangerBook._listRoomTypeBook);
-                                }
-                                else if(newValue == listShow[1]) {
-                                  selectedWidget = ShowListTypeBook(roomMangerBook._listRoomTypeBook);
+                                if (newValue == listShow[0]) {
+                                  selectedWidget = ShowListBook(
+                                      roomMangerBook.listRoomBook,
+                                      roomMangerBook._listRoomTypeBook);
+                                } else if (newValue == listShow[1]) {
+                                  selectedWidget = ShowListTypeBook(
+                                      roomMangerBook._listRoomTypeBook);
                                 }
                               });
                             },
@@ -172,7 +178,9 @@ class _RoomManagerWidgetState extends State<RoomManagerWidget> {
                     ),
                     Expanded(
                       child: Container(
-                        child: selectedWidget ?? ShowListBook(roomMangerBook.listRoomBook, roomMangerBook._listRoomTypeBook),
+                        child: selectedWidget ??
+                            ShowListBook(roomMangerBook.listRoomBook,
+                                roomMangerBook._listRoomTypeBook),
                       ),
                     ),
                   ],
@@ -185,4 +193,3 @@ class _RoomManagerWidgetState extends State<RoomManagerWidget> {
     );
   }
 }
-

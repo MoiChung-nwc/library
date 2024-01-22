@@ -4,24 +4,28 @@ import 'package:provider/provider.dart';
 import 'package:manager_library/widgets/components/my_drawer.dart';
 import 'package:manager_library/widgets/roomManager.dart';
 
-
-
-class MyHomePage extends StatelessWidget{
+class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    RoomManager roomMangerBook = Provider.of<RoomManager>(context, listen: true);
+    RoomManager roomMangerBook =
+    Provider.of<RoomManager>(context, listen: true);
     return Consumer<UserInterface>(
       builder: (context, ui, child) {
         return Scaffold(
           backgroundColor: ui.homePageBackgroundColor,
-
           appBar: AppBar(
-            title: Text("Thông tin hệ thống"),
+            title: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text('Dashboard', style: TextStyle(color: Colors.white)),
+                Text('Last update: 21 Jan 2024',
+                    style: TextStyle(color: Colors.white, fontSize: 12)),
+              ],
+            ),
             backgroundColor: ui.appBarColor,
           ),
-
           drawer: MyDrawer(),
-
           body: GridView.count(
             crossAxisCount: 2,
             children: [
@@ -29,171 +33,216 @@ class MyHomePage extends StatelessWidget{
                 padding: EdgeInsets.all(15.0),
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context).popAndPushNamed('/phong');
+                    Navigator.of(context).popAndPushNamed('/sach');
                   },
                   style: ButtonStyle(
-                    //backgroundColor: MaterialStateProperty.all(Colors.white),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                    backgroundColor: MaterialStateProperty.all(Colors.white),
                   ),
                   child: Container(
-                      width: ui.fontSize * 7.3,
-                      height: ui.fontSize * 7.3 ,
+                      width: ui.fontSize * 10,
+                      height: ui.fontSize * 10,
                       //color: Colors.blue,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.network(
-                            'https://img.lovepik.com/original_origin_pic/18/03/18/d3d28686a9db59af940cd2cc7d5b0c92.png_wh860.png',
-                            width: ui.fontSize * 4,
-                            height: ui.fontSize * 4,
+                            'https://unicorn-s3.b-cdn.net/Bookshelf-nye5q.jpg',
+                            width: ui.fontSize * 7,
+                            height: ui.fontSize * 7,
                           ),
-                          SizedBox(height: 8.0),
+                          SizedBox(height: 10.0),
                           Text(
-                            'Phòng',
+                            'Kho sách',
                             style: TextStyle(fontSize: ui.fontSize),
                           )
                         ],
-                      )
-                  ),
+                      )),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.all(15.0),
                 child: ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                  ),
                   onPressed: () {
-                    Navigator.of(context).popAndPushNamed('/caidat');
+                    Navigator.of(context).popAndPushNamed('/');
                   },
                   child: Container(
-                      width: ui.fontSize * 7.3,
-                      height: ui.fontSize * 7.3 ,
+                      width: ui.fontSize * 10,
+                      height: ui.fontSize * 10,
+
                       //color: Colors.blue,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.network(
-                            'https://tusachtiasang.org/wp-content/uploads/2021/07/Lang-nghe-trong-giao-tep.jpg',
-                            width: ui.fontSize * 4,
-                            height: ui.fontSize * 4,
+                            'https://paroda.vn/media/2021/08/customer-service.jpg',
+                            width: ui.fontSize * 7,
+                            height: ui.fontSize * 7,
                           ),
-                          SizedBox(height: 8.0,),
+                          SizedBox(
+                            height: 10.0,
+                          ),
                           Text(
                             'Khách hàng',
                             style: TextStyle(fontSize: ui.fontSize),
                           )
                         ],
-                      )
-                  ),
+                      )),
                 ),
               ),
               Padding(
                 padding: EdgeInsets.all(15.0),
                 child: ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                  ),
                   onPressed: () {
-                    Navigator.of(context).popAndPushNamed('/caidat');
+                    Navigator.of(context).popAndPushNamed('/trangchu');
                   },
                   child: Container(
-                      width: ui.fontSize * 7.3,
-                      height: ui.fontSize * 7.3 ,
+                      width: ui.fontSize * 10,
+                      height: ui.fontSize * 10,
                       //color: Colors.blue,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.network(
-                            'https://img.lovepik.com/free-png/20211229/lovepik-customer-service-personnel-icon-png-image_400960955_wh860.png',
-                            width: ui.fontSize * 4,
-                            height: ui.fontSize * 4,
+                            'https://cdnphoto.dantri.com.vn/OxivTG4Y9TlTb_IBtgGLvru0DxY=/thumb_w/960/2019/11/23/nang-cao-tu-duy-phan-bien-cho-nhan-vien-1-1574473985934.jpeg',
+                            width: ui.fontSize * 7,
+                            height: ui.fontSize * 7,
                           ),
-                          SizedBox(height: 8.0,),
+                          SizedBox(
+                            height: 10.0,
+                          ),
                           Text(
-                            'Dịch vụ',
+                            'Nhân viên',
                             style: TextStyle(fontSize: ui.fontSize),
                           )
                         ],
-                      )
-                  ),
+                      )),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                  ),
                   onPressed: () {
-                    Navigator.of(context).popAndPushNamed('/caidat');
+                    Navigator.of(context).popAndPushNamed('/trangchu');
                   },
                   child: Container(
-                      width: ui.fontSize * 7.3,
-                      height: ui.fontSize * 7.3,
+                      width: ui.fontSize * 10,
+                      height: ui.fontSize * 10,
                       //color: Colors.blue,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.network(
-                            'https://img.lovepik.com/free-png/20211211/lovepik-data-statistics-analysis-icon-free-vector-png-image_401493443_wh1200.png',
-                            width: ui.fontSize * 4,
-                            height: ui.fontSize * 4,
+                            'https://lh7-us.googleusercontent.com/AltEthO7WiA_fB_dsU0ufEZaH4iIzsFkny8mDSAFnH4SZAAjx01paYEmbDe11qSIJiPRr0dG3FTLU3d-gfB_0wjdx-v-v0kjPDk9HLIwkMH1ESKSpz9qTtR8Z38gJ8FM0V36icgb24Qsb8DURIvilec',
+                            width: ui.fontSize * 7,
+                            height: ui.fontSize * 7,
                           ),
-                          SizedBox(height: 8.0,),
+                          SizedBox(
+                            height: 10.0,
+                          ),
                           Text(
-                            'Thống kê',
+                            'Mượn trả',
                             style: TextStyle(fontSize: ui.fontSize),
                           )
                         ],
-                      )
-                  ),
+                      )),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                  ),
                   onPressed: () {
-                    Navigator.of(context).popAndPushNamed('/caidat');
+                    Navigator.of(context).popAndPushNamed('/trangchu');
                   },
                   child: Container(
-                      width: ui.fontSize * 7.3,
-                      height: ui.fontSize * 7.3 ,
+                      width: ui.fontSize * 10,
+                      height: ui.fontSize * 10,
                       //color: Colors.blue,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.network(
-                            'https://media.istockphoto.com/id/1372148093/vi/vec-to/c%E1%BA%A7m-tay-%C4%91i%E1%BB%87n-tho%E1%BA%A1i-v%E1%BB%9Bi-s%E1%BB%95-tr%E1%BB%B1c-tuy%E1%BA%BFn-c%E1%BB%A7a-kh%C3%A1ch-s%E1%BA%A1n-%C4%91%E1%BA%B7t-ph%C3%B2ng-kh%C3%A1ch-s%E1%BA%A1n-v%C3%A9-v%C3%A0-chuy%E1%BA%BFn-bay-%C4%91i%E1%BB%87n.jpg?s=612x612&w=is&k=20&c=1WD04F5RNbPq47pG1p0or4NizdJQeRf1LohVvHeoctA=',
-                            width: ui.fontSize * 4,
-                            height: ui.fontSize * 4,
+                            'https://www.pace.edu.vn/uploads/news/2023/10/tong-quan-ve-doanh-thu.jpg',
+                            width: ui.fontSize * 7,
+                            height: ui.fontSize * 7,
                           ),
-                          SizedBox(height: 8.0,),
+                          SizedBox(
+                            height: 10.0,
+                          ),
                           Text(
-                            'Đặt trả',
+                            'Doanh thu',
                             style: TextStyle(fontSize: ui.fontSize),
                           )
                         ],
-                      )
-                  ),
+                      )),
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.all(15.0),
                 child: ElevatedButton(
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                    ),
+                  ),
                   onPressed: () {
-                    Navigator.of(context).popAndPushNamed('/caidat');
+                    Navigator.of(context).popAndPushNamed('/about');
                   },
                   child: Container(
-                      width: ui.fontSize * 7.3,
-                      height: ui.fontSize * 7.3,
+                      width: ui.fontSize * 10,
+                      height: ui.fontSize * 10,
                       //color: Colors.blue,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Image.network(
                             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8G0oe-9R-XHGLoIzNMFkVY2W9TuN9T_UnqM_M4yqw5Pe0LFpw1aOXhUi1Onk9MVLs6As&usqp=CAU',
-                            width: ui.fontSize * 4,
-                            height: ui.fontSize * 4,
+                            width: ui.fontSize * 7,
+                            height: ui.fontSize * 7,
                           ),
-                          SizedBox(height: 8.0,),
+                          SizedBox(
+                            height: 10.0,
+                          ),
                           Text(
                             'Thông tin',
                             style: TextStyle(fontSize: ui.fontSize),
                           )
                         ],
-                      )
-                  ),
+                      )),
                 ),
               ),
             ],

@@ -5,13 +5,13 @@ import 'package:manager_library/models/RoomTypeBook.dart';
 import 'roomManager.dart';
 
 class ShowListTypeBook extends StatelessWidget {
-
   final List<RoomTypeBook> listRoomTypeBook;
   ShowListTypeBook(this.listRoomTypeBook);
 
   @override
   Widget build(BuildContext context) {
-    RoomManager roomMangerBook = Provider.of<RoomManager>(context, listen: true);
+    RoomManager roomMangerBook =
+    Provider.of<RoomManager>(context, listen: true);
     return Scaffold(
       body: Stack(
         children: [
@@ -28,27 +28,28 @@ class ShowListTypeBook extends StatelessWidget {
             child: FloatingActionButton(
               onPressed: () {
                 showMenu(
-                    context: context,
-                    position: RelativeRect.fromLTRB(300, 745, 0, 0),
-                    items: [
-                      PopupMenuItem(
-                        child: Material(
-                          child: ElevatedButton(
-                            onPressed: () {
-                              FormAddTypeBook adds = FormAddTypeBook(roomMangerBook.addRoomTypeBook);
-                              adds.openshowDialog(context);
-                            },
-                            child: Row(
-                              children: [
-                                Icon(Icons.add),
-                                SizedBox(width: 10.0),
-                                Text('Add New Book Type'),
-                              ],
-                            ),
+                  context: context,
+                  position: RelativeRect.fromLTRB(300, 745, 0, 0),
+                  items: [
+                    PopupMenuItem(
+                      child: Material(
+                        child: ElevatedButton(
+                          onPressed: () {
+                            FormAddTypeBook adds =
+                            FormAddTypeBook(roomMangerBook.addRoomTypeBook);
+                            adds.openshowDialog(context);
+                          },
+                          child: Row(
+                            children: [
+                              Icon(Icons.add),
+                              SizedBox(width: 10.0),
+                              Text('Thêm kiểu sách'),
+                            ],
                           ),
                         ),
                       ),
-                    ],
+                    ),
+                  ],
                 );
               },
               child: Icon(Icons.add),
@@ -63,29 +64,30 @@ class ShowListTypeBook extends StatelessWidget {
     return GestureDetector(
       onLongPress: () {
         showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              RoomManager roomMangerBook = Provider.of<RoomManager>(context, listen: true);
-              return AlertDialog(
-                title: Text("Delete"),
-                content: Text("Are you sure ${b.name}"),
-                actions: [
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text("Cancel"),
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      roomMangerBook.deleteTypeBook(b);
-                      Navigator.pop(context);
+          context: context,
+          builder: (BuildContext context) {
+            RoomManager roomMangerBook =
+            Provider.of<RoomManager>(context, listen: true);
+            return AlertDialog(
+              title: Text("Delete"),
+              content: Text("Are you sure ${b.name}"),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
                   },
-                    child: Text("Delete"),
-                  ),
-                ],
-              );
-            },
+                  child: Text("Cancel"),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    roomMangerBook.deleteTypeBook(b);
+                    Navigator.pop(context);
+                  },
+                  child: Text("Delete"),
+                ),
+              ],
+            );
+          },
         );
       },
       child: Padding(
@@ -95,12 +97,14 @@ class ShowListTypeBook extends StatelessWidget {
             padding: const EdgeInsets.all(10.0),
             child: Row(
               children: [
-                Icon(Icons.layers, size: 30,),
+                Icon(
+                  Icons.book_outlined,
+                  size: 30, color: Colors.blue,
+                ),
                 Text(
                   '${b.name}',
                   style: TextStyle(
                     fontSize: 20,
-                    fontWeight: FontWeight.bold,
                     color: Colors.black,
                   ),
                 ),
